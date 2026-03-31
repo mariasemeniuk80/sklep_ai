@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Product
+from .models import Category 
 
 def home(request):
-    """Pobiera wszystkie produkty z bazy i wysyła je do szablonu."""
-    products = Product.objects.all()
-    return render(request, 'sklep/home.html', {'products': products})
+    """Pobiera wszystkie kategorie z bazy i wysyła je do szablonu."""
+    categories = Category.objects.all()
+    return render(request, 'sklep/home.html', {'categories': categories})
