@@ -2,34 +2,111 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Zielony Kąt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zielony Kąt - Twój sklep z roślinami</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
-    <nav class="navbar navbar-dark bg-success mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="#">Zielony Kąt</a>
-        </div>
-    </nav>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --main-green: #1a4d2e;
+            --accent-gold: #cfa161;
+            --bg-light: #fdfcf9;
+        }
 
-    <div class="container">
+        body {
+            background-color: var(--bg-light);
+            color: #333;
+        }
+
+        .brand-header {
+            background-color: transparent;
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+            text-align: center;
+        }
+
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--main-green);
+            margin: 0;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .brand-title span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--accent-gold);
+            letter-spacing: 0;
+        }
+
+        .brand-subtitle {
+            font-family: sans-serif;
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            color: var(--main-green);
+        }
+
+        .text-success {
+            color: #2a7f4e !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="brand-header container">
+        <h1 class="brand-title">
+            Zielony <span>Kąt</span>
+        </h1>
+        <p class="brand-subtitle">Twój sklep z roślinami domowymi</p>
+    </header>
+
+    <div class="container my-5">
         <div class="row">
             {% for product in products %}
             <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow-sm">
+                <div class="card h-100 shadow-sm border-0">
                     {% if product.image %}
-                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 250px; object-fit: cover;">
+                    {% else %}
+                        <div class="bg-secondary text-white text-center py-5" style="height: 250px; display: flex; align-items: center; justify-content: center;">Brak zdjęcia</div>
                     {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text text-muted">{{ product.description }}</p>
-                        <h4 class="text-success">{{ product.price }} zł</h4>
+                    <div class="card-body py-4">
+                        <h5 class="card-title fw-bold mb-3">{{ product.name }}</h5>
+                        <p class="card-text text-muted small">{{ product.description }}</p>
+                    </div>
+                    <div class="card-footer bg-white border-0 py-3">
+                        <h4 class="text-success fw-bold text-center mb-0">{{ product.price }} zł</h4>
                     </div>
                 </div>
             </div>
             {% empty %}
-            <div class="col-12 text-center">
-                <p>Brak produktów w sklepie. Dodaj je w panelu admina!</p>
+            <div class="col-12 text-center my-5">
+                <div class="alert alert-info py-5 rounded-4 shadow-sm" role="alert">
+                    <p class="fs-4 mb-3">Brak produktów w sklepie.</p>
+                    <a href="/admin/" class="btn btn-success btn-lg">Dodaj pierwszą roślinę w panelu admina!</a>
+                </div>
             </div>
             {% endfor %}
         </div>
