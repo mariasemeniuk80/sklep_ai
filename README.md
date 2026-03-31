@@ -3,13 +3,6 @@
 ## Opis aplikacji
 Aplikacja webowa pełniąca rolę katalogu sklepu z roślinami doniczkowymi.
 
-## Instrukcja uruchomienia
-1. Sklonuj repozytorium i wejdź do folderu `sklep_ai`.
-2. Stwórz i aktywuj środowisko: `python -m venv venv` / `venv\Scripts\activate`
-3. Zainstaluj pakiety: `pip install django pillow`
-4. Wykonaj migracje: `python manage.py migrate`
-5. Uruchom serwer: `python manage.py runserver`
-
 ## Wykorzystane technologie
 Python, Django, SQLite, Bootstrap 5.
 
